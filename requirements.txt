@@ -1,7 +1,11 @@
 flask
+gunicorn
 flask-cors
 requests
 pandas
 numpy
 joblib
 beautifulsoup4
+
+
+
