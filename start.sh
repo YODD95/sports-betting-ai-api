@@ -1,1 +1,2 @@
-gunicorn app.main:app 
+#!/usr/bin/env bash
+python -m gunicorn app.main:app
