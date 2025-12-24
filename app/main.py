@@ -6,6 +6,11 @@ def create_app():
     from app.routes.predict import predict_bp
     app.register_blueprint(predict_bp)
 
+    @app.route("/health")
+def health():
+    return {"status": "ok"}
+
+
     return app
 
 # 🔴 THIS LINE IS REQUIRED FOR GUNICORN
