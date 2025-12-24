@@ -8,7 +8,10 @@ def create_app():
 
     return app
 
+# 🔴 THIS LINE IS REQUIRED FOR GUNICORN
+app = create_app()
 
+# 🔵 This block is ONLY for local testing
 if __name__ == "__main__":
-    app = create_app()
     app.run(debug=True)
+
