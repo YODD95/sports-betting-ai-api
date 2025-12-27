@@ -1,21 +1,21 @@
 from flask import Flask
+from flask_cors import CORS
 
 def create_app():
     app = Flask(__name__)
 
-    # 🔵 HEALTH CHECK (MUST BE INSIDE THE FACTORY)
-    @app.route("/health")
-    def health():
-        return {"status": "ok"}
+    # ✅ Allow all origins (safe for now)
+    CORS(app)
 
     from app.routes.predict import predict_bp
     app.register_blueprint(predict_bp)
 
+    @app.route("/")
+    def health():
+        return {"status": "ok"}
+
     return app
 
-# 🔴 GUNICORN NEEDS THIS
-app = create_app()
-
-# 🔵 LOCAL DEV ONLY
 if __name__ == "__main__":
-    app.run(debug=True)
+    app = create_app()
+    app.run()
