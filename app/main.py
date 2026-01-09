@@ -4,6 +4,9 @@ from flask_cors import CORS
 def create_app():
     app = Flask(__name__)
 
+    from app.routes.fixtures import fixtures_bp
+app.register_blueprint(fixtures_bp)
+
     # ✅ Allow all origins (safe for now)
     CORS(app)
 
