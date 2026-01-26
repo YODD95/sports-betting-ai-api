@@ -1,25 +1,21 @@
-from flask import Flask
+from flask import Flask, jsonify
 from flask_cors import CORS
-
 
 def create_app():
     app = Flask(__name__)
 
-    # ✅ CORS — allow Lovable + browser access
+    # ✅ Global CORS – allow Lovable previews + production
     CORS(
         app,
         resources={r"/*": {"origins": "*"}},
-        supports_credentials=True,
-        allow_headers="*",
-        methods=["GET", "POST", "OPTIONS"],
+        supports_credentials=False
     )
 
-    # ✅ Health check (used by Render)
-    @app.route("/health", methods=["GET"])
+    @app.route("/health")
     def health():
-        return {"status": "ok"}
+        return jsonify({"status": "ok"})
 
-    # ✅ Register blueprints
+    # Register blueprints
     from app.routes.predict import predict_bp
     from app.routes.fixtures import fixtures_bp
 
