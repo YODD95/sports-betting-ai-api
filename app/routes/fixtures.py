@@ -6,7 +6,7 @@ fixtures_bp = Blueprint("fixtures", __name__)
 
 @fixtures_bp.route("/fixtures", methods=["GET"])
 def fixtures():
-    sport = request.args.get("sport")
+    sport = request.args.get("sport") or request.args.get("sportId")
 
     if not sport:
         return jsonify({
